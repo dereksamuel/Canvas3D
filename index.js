@@ -24,15 +24,16 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: {
   const texture = new THREE.VideoTexture(video);
 
   // Materials and Objects(the shapes)
-  const geometry = new THREE.PlaneGeometry();
-  const material = new THREE.MeshBasicMaterial( {
-    map: texture,
-  } );
+  // const geometry = new THREE.PlaneGeometry();
+  // const material = new THREE.MeshBasicMaterial( {
+  //   map: texture,
+  // } );
 
   // Mesh Camera
-  const cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
+  // const cube = new THREE.Mesh(geometry, material);
+  // scene.add(cube);
 
+  scene.background = texture;
   camera.position.z = 1;
 
   const controls = new OrbitControls(camera, renderer.domElement);
