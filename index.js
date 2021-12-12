@@ -12,6 +12,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, }).then((st
   // Get texture dom element video
   const video = document.getElementById("video");
   video.srcObject = stream;
+  video.play();
 
   const texture = new THREE.VideoTexture(video);
 
