@@ -8,13 +8,15 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+const video = document.getElementById("video");
+
+video.setAttribute("autoplay", "");
+video.setAttribute("muted", "");
+video.setAttribute("playsinline", "");
+
 navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, }).then((stream) => {
   // Get texture dom element video
-  const video = document.getElementById("video");
   video.srcObject = stream;
-  video.setAttribute("autoplay", "");
-  video.setAttribute("muted", "");
-  video.setAttribute("playsinline", "");
   video.play();
 
   const texture = new THREE.VideoTexture(video);
