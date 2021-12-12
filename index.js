@@ -8,7 +8,7 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-navigator.mediaDevices.getUserMedia({ video: true, }).then((stream) => {
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, }).then((stream) => {
   // Get texture dom element video
   const video = document.getElementById("video");
   video.srcObject = stream;
