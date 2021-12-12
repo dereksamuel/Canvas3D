@@ -14,7 +14,9 @@ video.setAttribute("autoplay", "");
 video.setAttribute("muted", "");
 video.setAttribute("playsinline", "");
 
-navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, }).then((stream) => {
+navigator.mediaDevices.getUserMedia({ video: { facingMode: {
+  exact: "environment",
+} }, }).then((stream) => {
   // Get texture dom element video
   video.srcObject = stream;
   video.play();
