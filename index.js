@@ -14,14 +14,14 @@ video.setAttribute("autoplay", "");
 video.setAttribute("muted", "");
 video.setAttribute("playsinline", "");
 
-navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, }).then((stream) => {
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, }).then((stream) => {
   // Get texture dom element video
   video.srcObject = stream;
 
   const texture = new THREE.VideoTexture(video);
 
   // Materials and Objects(the shapes)
-  const geometry = new THREE.PlaneGeometry();
+  const geometry = new THREE.PlaneGeometry(1, 1);
   const material = new THREE.MeshBasicMaterial( {
     map: texture,
   } );
