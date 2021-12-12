@@ -17,6 +17,7 @@ video.setAttribute("playsinline", "");
 navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, }).then((stream) => {
   // Get texture dom element video
   video.srcObject = stream;
+  video.play();
 
   const texture = new THREE.VideoTexture(video);
 
