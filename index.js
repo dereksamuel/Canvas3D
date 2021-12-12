@@ -21,7 +21,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, }).t
   const texture = new THREE.VideoTexture(video);
 
   // Materials and Objects(the shapes)
-  const geometry = new THREE.PlaneGeometry(5, 5);
+  const geometry = new THREE.PlaneGeometry();
   const material = new THREE.MeshBasicMaterial( {
     map: texture,
   } );
@@ -30,7 +30,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, }).t
   const cube = new THREE.Mesh(geometry, material);
   scene.add(cube);
 
-  camera.position.z = 5;
+  camera.position.z = 0.5;
 
   const controls = new OrbitControls(camera, renderer.domElement);
 
