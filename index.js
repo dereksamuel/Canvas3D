@@ -14,14 +14,14 @@ video.setAttribute("autoplay", "");
 video.setAttribute("muted", "");
 video.setAttribute("playsinline", "");
 
-navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, }).then((stream) => {
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, }).then((stream) => {
   // Get texture dom element video
   video.srcObject = stream;
 
   const texture = new THREE.VideoTexture(video);
 
   // Materials and Objects(the shapes)
-  const geometry = new THREE.PlaneGeometry(1, 1);
+  const geometry = new THREE.PlaneGeometry(5, 5);
   const material = new THREE.MeshBasicMaterial( {
     map: texture,
   } );
@@ -30,7 +30,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, }).then((st
   const cube = new THREE.Mesh(geometry, material);
   scene.add(cube);
 
-  camera.position.z = 0.5;
+  camera.position.z = 5;
 
   const controls = new OrbitControls(camera, renderer.domElement);
 
