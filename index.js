@@ -49,6 +49,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
 
   const animate = function () {
     requestAnimationFrame(animate);
+    controls.update();
     renderer.render(scene, camera);
   };
 
