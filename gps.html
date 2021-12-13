@@ -11,7 +11,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ar.js/2.1.1/aframe-ar.min.js" integrity="sha512-nAwVtZxAhVDCqw7hx/hHoOOrTfNQ+l4dnw5HvRrzeDE8SB3cW6ztoCUQmpeSCiL0ZGO9OfNMghJubNAQTx2Jzw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-  <a-scene>
+  <a-scene vr-mode-ui="enabled: false">
+    <a-box
+      color="yellow"
+      position="0 0 -30"
+    ></a-box>
     <a-camera gps-camera rotation-reader></a-camera>
   </a-scene>
   <script src="./gps.js"></script>

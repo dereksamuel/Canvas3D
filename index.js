@@ -39,6 +39,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
   const cube = new THREE.Mesh(geometry, material);
   cube.position.x = 0;
   cube.position.y = 0;
+  cube.position.z = -10;
   scene.add(cube);
 
   scene.background = texture;
