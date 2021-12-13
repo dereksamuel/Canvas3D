@@ -30,14 +30,17 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
   const texture = new THREE.VideoTexture(video);
 
   // Materials and Objects(the shapes)
-  // const geometry = new THREE.PlaneGeometry();
-  // const material = new THREE.MeshBasicMaterial( {
-  //   map: texture,
-  // } );
+  const geometry = new THREE.BoxGeometry(0.5, 0.5);
+  const material = new THREE.MeshBasicMaterial( {
+    color: "green",
+    map: texture,
+  } );
 
   // Mesh Camera
-  // const cube = new THREE.Mesh(geometry, material);
-  // scene.add(cube);
+  const cube = new THREE.Mesh(geometry, material);
+  cube.position.x = -3;
+  cube.position.y = 0.5;
+  scene.add(cube);
 
   scene.background = texture;
   camera.position.z = 1;
