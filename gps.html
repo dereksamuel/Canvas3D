@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gps test</title>
+
+  <!-- SCRIPTS -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ar.js/2.1.1/aframe-ar.min.js" integrity="sha512-nAwVtZxAhVDCqw7hx/hHoOOrTfNQ+l4dnw5HvRrzeDE8SB3cW6ztoCUQmpeSCiL0ZGO9OfNMghJubNAQTx2Jzw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+  <a-scene>
+    <a-camera gps-camera rotation-reader></a-camera>
+  </a-scene>
+  <script src="./gps.js"></script>
+</body>
+</html>

@@ -32,8 +32,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
   // Materials and Objects(the shapes)
   const geometry = new THREE.BoxGeometry(0.5, 0.5);
   const material = new THREE.MeshBasicMaterial( {
-    color: "blue",
-    map: texture,
+    color: "royalblue",
   } );
 
   // Mesh Camera
@@ -43,6 +42,8 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
   scene.add(cube);
 
   scene.background = texture;
+  camera.position.z = 1;
+  camera.rotation.y = 90 * Math.PI / 180
 
   const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -51,10 +52,6 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
     controls.update();
     renderer.render(scene, camera);
   };
-
-  setInterval(() => {
-    alert(camera.position.z, camera.position.x, camera.position.y);
-  }, 3000);
 
   animate();
 
