@@ -46,10 +46,14 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
 
   const animate = function () {
     requestAnimationFrame(animate);
-    renderer.render( scene, camera );
+    renderer.render(scene, camera);
   };
 
   animate();
+
+  window.addEventListener("resize", (event) => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
 });
 
 // Three js para el futuro porque webgl es muy comple
