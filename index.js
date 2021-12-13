@@ -8,11 +8,13 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-const video = document.getElementById("video");
+const $video = document.getElementById("video");
 
-video.setAttribute("autoplay", "");
-video.setAttribute("muted", "");
-video.setAttribute("playsinline", "");
+$video.setAttribute("autoplay", "");
+$video.setAttribute("muted", "");
+$video.setAttribute("playsinline", "");
+
+tf.setBackend('cpu');
 
 window.mobileAndTabletCheck = function() {
   let check = false;
@@ -20,14 +22,19 @@ window.mobileAndTabletCheck = function() {
   return check;
 };
 
+$video.onplaying = async () => {
+  const net = await bodyPix.load();
+  predict(net);
+};
+
 navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabletCheck() ? "user" : {
   exact: "environment",
-} }, }).then((stream) => {
+} }, }).then(async (stream) => {
   // Get texture dom element video
-  video.srcObject = stream;
-  video.play();
+  $video.srcObject = stream;
+  $video.play();
 
-  const texture = new THREE.VideoTexture(video);
+  const texture = new THREE.VideoTexture($video);
 
   // Materials and Objects(the shapes)
   const geometry = new THREE.BoxGeometry(0.5, 0.5);
@@ -60,5 +67,15 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 });
+
+async function predict(net) {
+  const segmentation = await net.segmentPerson($video, {
+    flipHorizontal: false,
+    internalResolution: 'medium',
+    segmentationThreshold: 0.7
+  });
+
+  console.info(segmentation);
+}
 
 // Three js para el futuro porque webgl es muy comple
