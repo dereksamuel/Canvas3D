@@ -38,8 +38,8 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
 
   // Mesh Camera
   const cube = new THREE.Mesh(geometry, material);
-  cube.position.x = -3;
-  cube.position.y = 0.5;
+  cube.position.x = 0;
+  cube.position.y = 0;
   scene.add(cube);
 
   scene.background = texture;
@@ -55,7 +55,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
 
   animate();
 
-  window.addEventListener("resize", (event) => {
+  window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 });
