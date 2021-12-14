@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebXR experiments</title>
+
+  <!-- CDN LINKS SCRIPTS -->
+  <script src='https://cdn.jsdelivr.net/npm/webxr-polyfill@latest/build/webxr-polyfill.js'></script>  
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <script>
+    function getXR() {
+      const navXR = navigator.xr;
+      return !navXR ? new WebXRPolyfill() : navXR;
+    }
+
+    window.XRar = getXR();
+
+    async function isSessionSupported() {
+      try {
+        const session = await navigator.xr.isSessionSupported("immersive-vr");
+
+        return session;
+      } catch(error) {
+        console.error(error);
+        throw error;
+      }
+    }
+
+    async function createImmersiveSession(xr) {
+      try {
+        const session = await xr.requestSession("immersive-vr", {
+          requiredFeatures: [ "local" ] // to get unlimited spaces for the 3D scene
+        });
+
+        return session;
+      } catch(error) {
+        throw error;
+      }
+    }
+
+    async function getStarted() {
+      const isSupported = await isSessionSupported();
+
+      if (isSupported) {
+        const session = await createImmersiveSession(window.XRar);
+        runSession(session);
+      } else {
+        console.error("session isn't supported");
+      }
+    }
+
+    async function runSession(session) {
+      //let worldData;
+
+      //const $canvas = document.getElementById("scene");
+      //let gl = $canvas.getContext("webgl", {
+        //xrCompatible: true,
+      //});
+
+      console.log(loadGLPrograms, session);
+
+      worldData = load;
+    }
+
+    getStarted();
+  </script>
+</body>
+</html>

@@ -1,5 +1,7 @@
 import * as THREE from "https://cdn.skypack.dev/three@latest";
-import { OrbitControls } from "https://cdn.skypack.dev/three@latest/examples/jsm/controls/OrbitControls.js";
+// import { OrbitControls } from "https://cdn.skypack.dev/three@latest/examples/jsm/controls/OrbitControls.js";
+
+CameraControls.install( { THREE: THREE } );
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -53,7 +55,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
   camera.position.z = 1;
   camera.rotation.y = 90 * Math.PI / 180
 
-  const controls = new OrbitControls(camera, renderer.domElement);
+  const controls = new CameraControls(camera, renderer.domElement);
 
   const animate = function () {
     requestAnimationFrame(animate);
@@ -69,13 +71,6 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: !window.mobileAndTabl
 });
 
 async function predict(net) {
-  const segmentation = await net.segmentPerson($video, {
-    flipHorizontal: false,
-    internalResolution: 'medium',
-    segmentationThreshold: 0.7
-  });
-
-  console.info(segmentation);
 }
 
 // Three js para el futuro porque webgl es muy comple
